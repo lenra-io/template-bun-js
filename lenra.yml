@@ -2,26 +2,30 @@ componentsApi: "1.0"
 generator:
   dofigen:
     builders:
-      - from: "docker.io/bitnami/node:18"
+      - from: "docker.io/oven/bun"
         workdir: /app
         root:
           script:
-            - chown -R 1000 /app
+            - chown -R 1000:1000 /app
         adds:
-          - "*.json"
+          - "package.json"
+          - "bun.lockb"
         script:
-          - npm ci --omit=dev
+          - bun install --production
     from: builder-0
+    root:
+      script:
+        - chmod +r -R /app
     adds:
       - .
     cmd:
-      - node
-      - node_modules/@lenra/app-server/dist/bin/app-lenra.js
+      - bun run start
     envs:
       NODE_ENV: production
     ports:
       - 3000
     ignores:
       - "**"
-      - "!/*.json"
+      - "!/package.json"
+      - "!/bun.lockb"
       - "!/src/"
