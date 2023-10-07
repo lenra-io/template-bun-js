@@ -1,4 +1,4 @@
-import { Container, Flex, colors, padding, Image, Flexible, Text } from "@lenra/components";
+import { Container, Flex, colors, padding, Image, Flexible, Text } from "@lenra/app";
 
 export default function(_data, _props) {
   return Container(

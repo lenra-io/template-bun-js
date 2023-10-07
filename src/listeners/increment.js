@@ -4,14 +4,15 @@ import { Counter } from "../classes/Counter.js";
 
 /**
  * 
- * @param {import("@lenra/app-server").props} props 
- * @param {import("@lenra/app-server").event} _event 
- * @param {import("@lenra/app-server").Api} api
+ * @param {import("@lenra/app").props} props 
+ * @param {import("@lenra/app").event} _event 
+ * @param {import("@lenra/app").Api} api
  * @returns 
  */
-export default async function(props, _event, api) {
-    let counter = await api.data.getDoc(Counter, props.id);
-    counter.count += 1;
-    await api.data.updateDoc(counter);
-    return {};
+export default async function (props, _event, api) {
+    await api.data.coll(Counter).updateMany({ _id: props.id }, {
+        $inc: {
+            count: 1
+        }
+    });
 }

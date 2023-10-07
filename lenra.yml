@@ -2,7 +2,7 @@ componentsApi: "1.0"
 generator:
   dofigen:
     builders:
-      - from: "docker.io/oven/bun"
+      - from: "oven/bun"
         workdir: /app
         root:
           script:
@@ -19,13 +19,23 @@ generator:
     adds:
       - .
     cmd:
-      - bun run start
+      - bun
+      - node_modules/@lenra/app/dist/bin/app-lenra.js
+      - start
     envs:
       NODE_ENV: production
     ports:
       - 3000
+    healthcheck:
+      cmd: bun run healthcheck http://localhost:8080/_/health
+      interval: 1s
+      timeout: 1s
+      start: 200ms
     ignores:
       - "**"
       - "!/package.json"
       - "!/bun.lockb"
       - "!/src/"
+dev:
+  devtool:
+    tag: local
