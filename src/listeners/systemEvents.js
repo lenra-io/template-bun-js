@@ -4,21 +4,23 @@ import { Counter } from "../classes/Counter.js";
 
 /**
  * 
- * @param {import("@lenra/app-server").props} _props 
- * @param {import("@lenra/app-server").event} _event 
- * @param {import("@lenra/app-server").Api} api 
+ * @param {import("@lenra/app").} _props 
+ * @param {import("@lenra/app").event} _event 
+ * @param {import("@lenra/app").Api} api 
  */
 export async function onEnvStart(_props, _event, api) {
-    let counters = await api.data.find(Counter, { user: "global" })
-    if (counters.length == 0) {
-        await api.data.createDoc(new Counter("global", 0));
-    }
+    await createCounter(api, "global");
 }
 
 export async function onUserFirstJoin(_props, _event, api) {
-    let counters = await api.data.find(Counter, { user: "@me" })
+    await createCounter(api, "@me");
+}
+
+async function createCounter(api, user) {
+    const counterColl = api.data.coll(Counter);
+    let counters = await counterColl.find({ user })
     if (counters.length == 0) {
-        await api.data.createDoc(new Counter("@me", 0))
+        await counterColl.createDoc(new Counter(user, 0))
     }
 }
 

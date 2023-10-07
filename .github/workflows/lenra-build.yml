@@ -15,6 +15,8 @@ jobs:
         uses: ndeloof/install-compose-action@v0.0.1
       - run: docker-compose --version
       - name: Install Lenra CLI
-        run: wget -c https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-x86_64.tar.gz -O - | tar -xz
+        run: wget -c https://github.com/lenra-io/lenra_cli/releases/latest/download/lenra-linux-x86_64 -O lenra
+      - name: Make Lenra CLI executable
+        run: chmod +x lenra
       - name: Build app
         run: ./lenra build

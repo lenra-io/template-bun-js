@@ -1,4 +1,4 @@
-import { Data } from "@lenra/app-server";
+import { Data } from "@lenra/app";
 
 export class Counter extends Data {
     /**
