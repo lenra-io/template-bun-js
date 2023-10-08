@@ -1,16 +1,16 @@
-import { DataApi, Flex, View } from "@lenra/app";
-import { Counter } from "../../classes/Counter.js";
+import { ViewRequest, DataApi, Component, Flex, IComponent, View } from "@lenra/app"
+import { Counter } from "../../classes/Counter.js"
 
-export default function (_data, _props) {
+export default function (_data: ViewRequest['data'], _props: ViewRequest['props']): Component<IComponent> | IComponent {
     return Flex([
         View("lenra.counter")
             .find(Counter, {
-                user: "@me"
+                "user": "@me"
             })
             .props({ text: "My personnal counter" }),
         View("lenra.counter")
             .find(Counter, {
-                user: "global"
+                "user": "global"
             })
             .props({ text: "The common counter" }),
     ])

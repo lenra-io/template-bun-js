@@ -7,16 +7,20 @@
   "scripts": {
     "start": "bun node_modules/@lenra/app/dist/bin/app-lenra.js start",
     "index": "bun node_modules/@lenra/app/dist/bin/app-lenra.js index",
-    "healthcheck": "bun src/healthcheck.js",
+    "healthcheck": "bun src/healthcheck.ts",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [],
   "author": "Lenra",
   "license": "MIT",
   "dependencies": {
-    "@lenra/app": "^1.0.0"
+    "@lenra/app": "^1.1.0"
   },
   "app-lenra": {
-    "app": "app.js"
+    "app": "app.ts",
+    "indexer": "ts"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.5-canary.20231007T140129"
   }
 }

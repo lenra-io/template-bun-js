@@ -1,4 +1,3 @@
-import { serve, file, write } from "bun";
 import { File } from '@lenra/app/dist/lib/handler.js';
 import { App } from "@lenra/app";
 
@@ -7,7 +6,7 @@ const port = process.env.http_port || 3000;
 export default class BunServer extends App {
     start() {
         const app = this;
-        serve({
+        Bun.serve({
             port,
             async fetch(req) {
                 try {
@@ -15,7 +14,7 @@ export default class BunServer extends App {
                         const payload = await req.json();
                         const result = await app.handler.handleRequest(payload);
                         if (result instanceof File) {
-                            return new Response(file(result.path));
+                            return new Response(Bun.file(result.path));
                         }
                         else if (result) {
                             return new Response(JSON.stringify(result));
