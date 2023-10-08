@@ -36,6 +36,3 @@ generator:
       - "!/package.json"
       - "!/bun.lockb"
       - "!/src/"
-dev:
-  devtool:
-    tag: local
