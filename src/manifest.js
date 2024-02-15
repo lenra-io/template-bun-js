@@ -29,6 +29,11 @@ export const lenra = {
         {
             path: "/",
             view: View("lenra.main")
+        },
+        {
+            path: "/",
+            view: View("lenra.noauth"),
+            roles: ["guest"]
         }
     ]
 };
