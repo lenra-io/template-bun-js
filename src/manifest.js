@@ -10,7 +10,8 @@ export const json = {
             path: "/counter/global",
             view: View("counter").find(Counter, {
                 "user": "global"
-            })
+            }),
+            roles: ["user", "guest"]
         },
         {
             path: "/counter/me",

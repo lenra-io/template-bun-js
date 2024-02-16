@@ -14,7 +14,7 @@
   "author": "Lenra",
   "license": "MIT",
   "dependencies": {
-    "@lenra/app": "^1.0.0"
+    "@lenra/app": "^1.2.0"
   },
   "app-lenra": {
     "app": "app.js"
